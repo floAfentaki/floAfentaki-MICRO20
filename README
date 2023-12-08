@@ -1,0 +1,30 @@
+0) ./gen_mlp_synproj.sh $dataset $joblib_path
+
+# 0) use predict_fxp_ps.py and for each model set INP_FRAC=4, W_WIDTH=8, and find a value for L0trunc so that the accuracy doesn not drop significantly
+
+# 1) edit mlp.template/scripts/env.sh and set: ENV_LIBRARY_PATH and ENV_LIBRARY_VERILOG_PATH
+
+# 2) run ./gen_mlp_synproj.sh dataset model
+
+# 3) the following folders will be generated:
+# ${dataset}_mlp_[clf|reg]_ex
+# ${dataset}_mlp_[clf|reg]_wax
+# copy them to your synthesis server.
+
+# 4) in each folder run
+# ./test0.sh
+# ./test1.sh
+# check that no errors occured
+
+# 5a) Play with pruning: run ./prune_scripts/prune_and_eval.sh gate/original.sv sim/top.vcd.gz X Y false false
+# e.g., X=0.95 and Y=8
+
+# 5b) Run DSE: edit runall.sh  and set MINSIG (minimum signifficance for the error) MAXSIG (maximum signifficance for the error).
+# Try to keep these value consisent in all the projects. MAXSIG>MINSIG>=0 and 0=<MAXSIG<max width of an output neuron.
+# Then, open a screen and run:
+# ./runall.sh false | tee exec.rpt
+
+
+you may run up to 5 (or number of licenses) ./runall.sh false in parallel.
+Don't run more than one test1.sh in parallel or test1.sh and ./runall.sh
+You may think of a batter approach and avoid the DSE
