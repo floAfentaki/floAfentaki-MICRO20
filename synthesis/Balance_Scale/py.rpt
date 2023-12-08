@@ -1,0 +1,7 @@
+Input fxp: (0, 0, 4)
+Weights fxp: (1, 6, 1)
+Intercepts fxp: [(1, 4, 5), (1, 8, 6)]
+Truncate HL: 0
+ACCURACY W/ MODEL: 0.9873417721518988
+ACCURACY W/ MLPFX 0.9367088607594937
+Bitwidth of activations: [4, 11]

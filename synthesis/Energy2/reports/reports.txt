@@ -1,0 +1,1 @@
+Accuracy: 87.3418	Area: 9.88153e+02 cm^2	Power: 3.17 mW
